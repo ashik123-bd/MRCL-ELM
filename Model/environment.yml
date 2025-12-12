@@ -1,0 +1,21 @@
+name: MRCL-ELM
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+dependencies:
+  - python>=3.8
+  - pytorch>=2.0
+  - torchvision
+  - torchaudio
+  - cudatoolkit=11.8
+  - numpy
+  - scikit-learn
+  - matplotlib
+  - seaborn
+  - pyyaml
+  - pillow
+  - tqdm
+  - pip
+  - pip:
+      - kaggle

@@ -1,0 +1,76 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+pip-log.txt
+pip-delete-this-directory.txt
+.pytest_cache/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Flask
+instance/
+.webassets-cache
+.flaskenv
+
+# Jupyter
+.ipynb_checkpoints
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project-specific
+data/
+results/
+logs/
+uploads/
+*.pth
+*.zip
+*.tar.gz
+*.csv
+*.h5
+*.pt
+*.onnx
+*.pkl
+*.joblib
+*.svg
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.pdf
+
+# Model & cache
+*.pth
+torch_cache/
+wandb/
+mlflow/
+tensorboard/
+
+# Kaggle
+kaggle.json

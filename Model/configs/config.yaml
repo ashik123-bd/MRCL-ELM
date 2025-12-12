@@ -1,0 +1,33 @@
+# configs/config.yaml
+# Configuration file for EfficientNet-LSTM-ELM on EuroSAT
+
+model:
+  name: "EfficientNetLSTMELM"
+  backbone: "efficientnet_b0"
+  pretrained: true
+  lstm_units: 256
+  dense_units: [512, 128]
+  dropout_rates: [0.3, 0.4, 0.5, 0.3]
+  elm_hidden_units: 512
+
+data:
+  dataset: "EuroSAT_RGB"
+  image_size: [128, 128]
+  batch_size: 32
+  num_workers: 2
+  pin_memory: true
+
+training:
+  epochs: 50
+  learning_rate: 0.0001
+  optimizer: "Adam"
+  scheduler: "ReduceLROnPlateau"
+  reduce_lr_factor: 0.5
+  reduce_lr_patience: 3
+  early_stopping_patience: 10
+  seed: 42
+
+paths:
+  data_dir: "data/EuroSAT_RGB"
+  save_dir: "results"
+  model_save_path: "results/mrcl_elm.pth"
