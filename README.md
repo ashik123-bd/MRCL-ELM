@@ -41,6 +41,29 @@ MRCL-ELM/
 │   │   ├── README.md
 │   │   └── requirements.txt
 │   │
+│   ├── XAI/                       ← NEW (same level as src)
+│   │   ├── LIME/
+│   │   │   ├── .gitignore
+│   │   │   ├── README.md
+│   │   │   ├── config.py
+│   │   │   ├── data_utils.py
+│   │   │   ├── model.py
+│   │   │   ├── lime_explain.py
+│   │   │   ├── visualize.py
+│   │   │   ├── run_lime.py
+│   │   │   └── requirements.txt
+│   │   │
+│   │   └── SHAP/
+│   │       ├── .gitignore
+│   │       ├── README.md
+│   │       ├── config.py
+│   │       ├── data_utils.py
+│   │       ├── model.py
+│   │       ├── shap_explain.py
+│   │       ├── visualize.py
+│   │       ├── run_shap.py
+│   │       └── requirements.txt
+│   │
 │   └── docs/
 │       ├── INSTALLATION.md
 │       ├── MODEL_ARCHITECTURE.md
@@ -55,7 +78,6 @@ MRCL-ELM/
 ├── .gitignore
 ├── LICENSE
 └── README.md
-
 ```
 
 ## Installation
