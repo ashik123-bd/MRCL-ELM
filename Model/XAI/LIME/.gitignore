@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+*.pkl
+*.pt
+*.pth
+.env
+.ipynb_checkpoints/
+OUTPUT_DIR/
+*.svg
+.DS_Store
+/kaggle/

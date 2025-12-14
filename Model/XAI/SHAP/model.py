@@ -23,57 +23,48 @@ class EfficientNetLSTMModel(nn.Module):
     def __init__(self):
         super().__init__()
         
-        # Load pretrained EfficientNet-B0
         self.efficientnet = efficientnet_b0(weights=EfficientNet_B0_Weights.DEFAULT)
         self.backbone = nn.Sequential(*list(self.efficientnet.features.children()))
 
-        # Residual and projection paths (you must have these classes defined)
+     
         self.residual_block1 = ResidualBlock(1280, 64, dropout_rate=0.3)
         self.residual_block2 = ResidualBlock(64, 128, dropout_rate=0.4)
 
         self.projection_path1 = ProjectionPath(1280, 64)
         self.projection_path2 = ProjectionPath(64, 128)
 
-        # Fusion layer after concatenating original + upsampled features
         self.conv_after_fusion = nn.Conv2d(1280 + 128, 256, kernel_size=1, bias=False)
         self.bn_after_fusion = nn.BatchNorm2d(256)
         self.relu_after_fusion = nn.ReLU(inplace=True)
 
-        # LSTM + ELM head
         self.lstm = nn.LSTM(input_size=256, hidden_size=256, batch_first=True, num_layers=1)
         self.elm = ELMLayer(256, 512, 10)
 
     def forward(self, x):
         z = self.backbone(x)                     
 
-        # First residual + projection fusion
         r1 = self.residual_block1(z)
         p1 = self.projection_path1(z)
         fused1 = r1 + p1
 
-        # Second residual + projection fusion
         r2 = self.residual_block2(fused1)
         p2 = self.projection_path2(fused1)
         fused2 = r2 + p2                                  
-        # Upsample fused2 to match z's spatial size and concatenate
         fused2_upsampled = F.interpolate(
             fused2, size=z.shape[2:], mode='bilinear', align_corners=False
         )
         final_fused = torch.cat([z, fused2_upsampled], dim=1)   
 
-        # Post-fusion processing
         x = self.conv_after_fusion(final_fused)
         x = self.bn_after_fusion(x)
         x = self.relu_after_fusion(x)
 
-        # Global Average Pooling
         x = torch.mean(x, dim=(2, 3))         
         x = x.unsqueeze(1)                    
 
-        # LSTM (sequence length = 1)
         lstm_out, _ = self.lstm(x)            
         lstm_features = lstm_out[:, -1, :]    
 
-        # Final ELM classification
+       
         out = self.elm(lstm_features)
         return out
