@@ -25,8 +25,6 @@ MRCL-ELM is a state-of-the-art land use and land cover classification system des
 MRCL-ELM/
 │
 ├── Model/
-│   ├── configs/
-│   │   └── config.yaml
 │   │
 │   ├── src/
 │   │   ├── __init__.py
@@ -41,7 +39,7 @@ MRCL-ELM/
 │   │   ├── README.md
 │   │   └── requirements.txt
 │   │
-│   ├── XAI/                       ← NEW (same level as src)
+│   ├── XAI/
 │   │   ├── LIME/
 │   │   │   ├── .gitignore
 │   │   │   ├── README.md
@@ -63,11 +61,6 @@ MRCL-ELM/
 │   │       ├── visualize.py
 │   │       ├── run_shap.py
 │   │       └── requirements.txt
-│   │
-│   └── docs/
-│       ├── INSTALLATION.md
-│       ├── MODEL_ARCHITECTURE.md
-│       └── USAGE.md
 │
 ├── web-App/
 │   ├── templates/
@@ -78,6 +71,7 @@ MRCL-ELM/
 ├── .gitignore
 ├── LICENSE
 └── README.md
+
 ```
 
 ## Installation
